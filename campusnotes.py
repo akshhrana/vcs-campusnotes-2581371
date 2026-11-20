@@ -16,7 +16,7 @@ NOTES = [
 
 def show_notes(notes):
     print("CampusNotes - Aksh Rana (URN 2581371)")
-    for i, note in enumerate(notes):
+    for i, note in enumerate(notes, 1):
         print(f"{i}. {note}")
 
 def search_notes(notes, keyword):

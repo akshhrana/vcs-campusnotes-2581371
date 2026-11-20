@@ -1,0 +1,11 @@
+#!/bin/sh
+# Pre-commit hook: reject a commit if a staged file contains a
+# marker word for unfinished work. The pattern is split so this
+# script does not match itself when it is staged.
+if git diff --cached --name-only -z | xargs -0 grep -l -E 'TOD[O]|FIXM[E]' 2>/dev/null | grep -q .; then
+  echo "pre-commit: blocked - a staged file contains TOD[O] or FIXM[E]."
+  echo "Remove the marker before committing."
+  git diff --cached --name-only -z | xargs -0 grep -l -E 'TOD[O]|FIXM[E]' 2>/dev/null
+  exit 1
+fi
+exit 0

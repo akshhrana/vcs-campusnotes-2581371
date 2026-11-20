@@ -1,0 +1,18 @@
+#!/bin/sh
+# Commit-msg hook: message must be at least 10 characters long and
+# start with feat:, fix:, docs:, refactor: or chore:.
+msg_file="$1"
+msg=$(cat "$msg_file")
+len=$(printf '%s' "$msg" | wc -c)
+if [ "$len" -lt 10 ]; then
+  echo "commit-msg: blocked - message is shorter than 10 characters."
+  exit 1
+fi
+case "$msg" in
+  feat:*|fix:*|docs:*|refactor:*|chore:*) ;;
+  *)
+    echo "commit-msg: blocked - message must start with feat:, fix:, docs:, refactor: or chore:."
+    exit 1
+    ;;
+esac
+exit 0

@@ -14,7 +14,7 @@ NOTES = [
     "Prepare for the VCS viva",
 ]
 
-def show_notes(notes):
+def list_notes(notes):
     print("CampusNotes - Aksh Rana (URN 2581371)")
     for i, note in enumerate(notes, 1):
         print(f"{i}. {note}")
@@ -25,10 +25,10 @@ def search_notes(notes, keyword):
         print(f"No notes matching '{keyword}'.")
         return
     print(f"Matches for '{keyword}':")
-    show_notes(found)
+    list_notes(found)
 
 if __name__ == "__main__":
     if len(sys.argv) > 2 and sys.argv[1] == "search":
         search_notes(NOTES, sys.argv[2])
     else:
-        show_notes(NOTES)
+        list_notes(NOTES)
